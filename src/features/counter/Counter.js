@@ -12,7 +12,7 @@ const Counter = () => {
     setIncrementAmount(0);
     dispatch(reset());
   };
-
+  // testing 123
   return (
     <section>
       <p>{count}</p>
