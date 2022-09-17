@@ -1,6 +1,6 @@
 # posts
 
-#### MERN STACK PROJECT: BACK END
+#### REACT REDUX PROJECT
 <!-- ![Alt Text](https://media.giphy.com/media/quEsMOrr3hmQ8/giphy.gif) -->
 <p float="left">
  <img src="https://github.com/mongodb-js/leaf/raw/master/dist/mongodb-leaf_128x128.png" width="40" height="40">
