@@ -19,9 +19,5 @@
 - #### coming soon...
 - #### coming soon...
 ##
- <img src="https://github.com/ronitafter/screenshots/blob/main/Untitled.png">
-
-
-
-<img src="![image](https://user-images.githubusercontent.com/54575125/190849081-eb866bd6-9c6a-4d71-9dc4-7d4f5f4b1280.png)"  alt="Alt text" width="500" height="250">
+ <img src="https://github.com/ronitafter/screenshots/blob/main/Untitled.png" width="500" height="250">
 ## Link to the Front End part: coming soon...
