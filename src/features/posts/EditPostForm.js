@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectPostById } from "./postsSlice";
-import { updatePost } from "./postsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPostById, updatePost, deletePost } from "./postsSlice";
 import { useParams, useNavigate } from "react-router-dom";
+
 import { selectAllUsers } from "../users/usersSlice";
+// import { set } from "date-fns";
 
 const EditPostForm = () => {
   const { postId } = useParams();
@@ -14,7 +15,7 @@ const EditPostForm = () => {
 
   const [title, setTitle] = useState(post?.title);
   const [content, setContent] = useState(post?.body);
-  const [userId, setUserId] = useState(post.userId);
+  const [userId, setUserId] = useState(post?.userId);
   const [requestStatus, setRequestStatus] = useState("idle");
 
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const EditPostForm = () => {
   if (!post) {
     return (
       <section>
-        <h2>Edit Post</h2>
+        <h2>Post not found!</h2>
       </section>
     );
   }
@@ -53,7 +54,7 @@ const EditPostForm = () => {
         setUserId("");
         navigate(`/post/${postId}`);
       } catch (err) {
-        console.error("Faild tp save the post", err);
+        console.error("Failed to save the post", err);
       } finally {
         setRequestStatus("idle");
       }
@@ -66,27 +67,27 @@ const EditPostForm = () => {
     </option>
   ));
 
-  // const onDeletePostClicked = () => {
-  //   try {
-  //     setRequestStatus("pending");
-  //     dispatch(deletePost({ id: post.id })).unwrap();
+  const onDeletePostClicked = () => {
+    try {
+      setRequestStatus("pending");
+      dispatch(deletePost({ id: post.id })).unwrap();
 
-  //     setTitle("");
-  //     setContent("");
-  //     setUserId("");
-  //     navigate("/");
-  //   } catch (err) {
-  //     console.error("Failed to delete the post", err);
-  //   } finally {
-  //     setRequestStatus("idle");
-  //   }
-  // };
+      setTitle("");
+      setContent("");
+      setUserId("");
+      navigate("/");
+    } catch (err) {
+      console.error("Failed to delete the post", err);
+    } finally {
+      setRequestStatus("idle");
+    }
+  };
 
   return (
     <section>
-      <h2>EditPost</h2>
+      <h2>Edit Post</h2>
       <form>
-        <label htmlFor="postTitle">PostTitle:</label>
+        <label htmlFor="postTitle">Post Title:</label>
         <input
           type="text"
           id="postTitle"
@@ -95,11 +96,7 @@ const EditPostForm = () => {
           onChange={onTitleChanged}
         />
         <label htmlFor="postAuthor">Author:</label>
-        <select
-          id="postAuthor"
-          defaultValue={userId}
-          onChange={onAuthorChanged}
-        >
+        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
           <option value=""></option>
           {usersOptions}
         </select>
@@ -113,16 +110,15 @@ const EditPostForm = () => {
         <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
           Save Post
         </button>
-        {/* <button
+        <button
           className="deleteButton"
           type="button"
           onClick={onDeletePostClicked}
         >
           Delete Post
-        </button> */}
+        </button>
       </form>
     </section>
   );
 };
-
 export default EditPostForm;
