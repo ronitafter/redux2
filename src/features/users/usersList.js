@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { selectAllUsers } from "./usersSlice";
 import { Link } from "react-router-dom";
 
-const usersList = () => {
+const UsersList = () => {
   const users = useSelector(selectAllUsers);
   const renderedUsers = users.map((user) => (
     <li key={user.id}>
@@ -17,4 +17,4 @@ const usersList = () => {
   );
 };
 
-export default usersList;
+export default UsersList;
